@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>AR.js Ahuehuete (Fix de Zoom y HIRO)</title>
+        <title>AR.js Ahuehuete (Patrón Personalizado y Fix de Zoom)</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Carga de librerías esenciales (A-Frame, AR.js, A-Frame Extras) -->
         <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
@@ -17,7 +17,7 @@
             loading-screen="enabled: false;"
             renderer="logarithmicDepthBuffer: true;"
             
-            <!-- AJUSTES CLAVE: Se añaden parámetros de resolución y calibración -->
+            <!-- AJUSTES CRÍTICOS: Corrección del zoom (sourceWidth/sourceHeight/cameraParametersUrl) y desactivación de debug -->
             arjs="trackingMethod: best; 
                   sourceType: webcam; 
                   debugUIEnabled: false;
@@ -37,13 +37,16 @@
                 ></a-asset-item>
             </a-assets>
 
-            <!-- Marcador HIRO (para asegurar que la detección funciona) -->
+            <!-- Marcardor con tu patrón personalizado (marker.patt) -->
             <a-marker
-                id="hiro-marker"
-                preset="hiro" 
+                id="animated-marker"
+                type="pattern"
+                preset="custom" 
+                url="assets/marker.patt"
                 raycaster="objects: .clickable"
                 emitevents="true"
                 cursor="fuse: false; rayOrigin: mouse;"
+                id="markerA"
             >
                 <a-entity
                     id="ahuehuete-model"
