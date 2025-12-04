@@ -1,23 +1,28 @@
 <!doctype html>
 <html>
 <head>
-    <title>AR.js Funcionando 2025</title>
+    <title>AR.js con Gestos 2025</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
     <!-- A-Frame estable -->
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
 
-    <!-- AR.js estable (evita pantalla blanca y NO tiene zoom) -->
+    <!-- AR.js estable -->
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar.js"></script>
 
-    <!-- GLTF Loader estable -->
+    <!-- Cargador GLTF -->
     <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.loaders.min.js"></script>
+
+    <!-- GESTURES (Versión estable, NO rompe cámara) -->
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/studio-backend/src/modules/marker/tools/gesture-detector.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/studio-backend/src/modules/marker/tools/gesture-handler.js"></script>
 </head>
 
 <body style="margin:0; overflow:hidden;">
     <a-scene
         vr-mode-ui="enabled: false"
         embedded
+        gesture-detector
         arjs="sourceType: webcam; debugUIEnabled: false;"
     >
 
@@ -27,9 +32,12 @@
 
         <a-marker preset="hiro">
             <a-entity
+                id="my-model"
                 gltf-model="#model"
                 scale="1 1 1"
                 animation-mixer="loop: repeat"
+                class="clickable"
+                gesture-handler="minScale: 0.3; maxScale: 4"
             ></a-entity>
         </a-marker>
 
